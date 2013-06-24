@@ -6,7 +6,7 @@
         id        = "com.tva.test"
         version   = "99.999">
 
-    <name>TVAPP scanner</name>
+    <name>TVAPP scanner 2</name>
 
     <description>
         Scan a QR code.
