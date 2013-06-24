@@ -54,16 +54,35 @@ var app = {
 
 function getToken() {
     try {
-       jQuery.get(
-            "https://164.177.149.82/vault/generatetoken.php",
-            {merchant : 'xpto', details : 'tea', total : '5'},
-            function(data) {
-               alert('r: ' + data.response);
-            }
-        );
+       $.ajax({
+         dataType:"script",
+         data:{merchant : 'xpto', details : 'tea', total : '5', callback: 'cb'},
+         url:"https://164.177.149.82/vault/generatetoken.php",
+         timeout: 15000
+        });
     } catch(e){ 
-        alert("e="+e)
+        alert("e="+e);
     }
+}
+
+cb = function (data) {  
+    try {
+        alert("d=" +data.token);
+    } catch(e){ 
+        alert("e1="+e)
+    }
+
+function goPool() {
+    $.ajax({
+        url: "/server/api/function",
+        type: "GET",
+        success: function(data) {
+            console.log("polling");
+        },
+        dataType: "json",
+        complete: setTimeout(function() {poll()}, 5000),
+        timeout: 15000
+    })
 }
 
 function goScan() {
