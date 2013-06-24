@@ -58,7 +58,7 @@ function getToken() {
             "http://tvae.tvappagency.com/upload/simon/json/index.php",
             {orderDetails : 1, total : 'abc'},
             function(data) {
-               alert('page content: ' + data);
+               alert('page content: ' + data.response);
             }
         );
 }
