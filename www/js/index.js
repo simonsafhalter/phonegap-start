@@ -57,7 +57,7 @@ function getToken() {
     try {
         alert("getToken");
     
-       $.get(
+       jQuery.get(
             "http://tvae.tvappagency.com/upload/simon/json/index.php",
             {orderDetails : 1, total : 'abc'},
             function(data) {
