@@ -54,13 +54,21 @@ var app = {
 
 function getToken() {
     
+    try {
+        alert("getToken");
+    
        $.get(
             "http://tvae.tvappagency.com/upload/simon/json/index.php",
             {orderDetails : 1, total : 'abc'},
             function(data) {
+                alert("response");
                alert('page content: ' + data.response);
             }
         );
+    } catch(e){
+        
+        alert("e="+e)
+    }
 }
 
 function goScan() {
