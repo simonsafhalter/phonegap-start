@@ -69,8 +69,9 @@ cb = function (data) {
     try {
         alert("d=" +data.token);
     } catch(e){ 
-        alert("e1="+e)
+        alert("e1="+e);
     }
+}
 
 function goPool() {
     $.ajax({
