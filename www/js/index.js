@@ -16,6 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -46,8 +48,12 @@ var app = {
 
         console.log('Received Event: ' + id);
         
-        var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+        
+    }
+};
 
+function goScan() {
+    
        scanner.scan(
           function (result) {
               alert("We got a barcode\n" +
@@ -59,5 +65,5 @@ var app = {
               alert("Scanning failed: " + error);
           }
        );
-    }
-};
+}
+
