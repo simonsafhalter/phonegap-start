@@ -53,20 +53,15 @@ var app = {
 };
 
 function getToken() {
-    
     try {
-        alert("getToken");
-    
        jQuery.get(
-            "http://tvae.tvappagency.com/upload/simon/json/index.php",
-            {orderDetails : 1, total : 'abc'},
+            "https://164.177.149.82/vault/generatetoken.php",
+            {merchant : 'xpto', details : 'tea', total : '5'},
             function(data) {
-                alert("response");
-               alert('page content: ' + data.response);
+               alert('r: ' + data.response);
             }
         );
-    } catch(e){
-        
+    } catch(e){ 
         alert("e="+e)
     }
 }
