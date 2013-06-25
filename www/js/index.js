@@ -82,8 +82,6 @@ function login() {
     try { 
         email = document.getElementById('email').value;
         password = document.getElementById('password').value;
-        alert("e:"+email);   
-        alert("p:"+password);   
         if(email != "" && password != "") {
            $.ajax({
              dataType:"script",
@@ -130,7 +128,7 @@ CBgetCCTokens = function(data) {
     alert("CBgetCCTokens");
     try {
         TVA.CCtokens = data;
-        for(var i = 0; i < tokens.length; i++) {
+        for(var i = 0; i < TVA.CCtokens.length; i++) {
             alert(TVA.CCtokens[i].token);
             alert(TVA.CCtokens[i].description);
             var table=document.getElementById("tokenTable");
@@ -173,11 +171,13 @@ CBgetOrderDetails = function(data) {
         TVA.order.merchant = data.merchant;
         
         var x;
-        var r=confirm("TVA.order.total \nTVA.order.details \nTVA.order.merchant");
+        var r=confirm("Total: " + TVA.order.total + 
+                      "\nDetails: " + TVA.order.details + 
+                      "\nMerchant: " + TVA.order.merchant);
         if (r==true) {
-            x="You pressed OK!";
+            x="Confirming payment!";
         } else {
-            x="You pressed Cancel!";
+            x="Cancelling payment!";
         }
         alert(x);
     } catch(e){ 
