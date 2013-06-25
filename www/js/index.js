@@ -211,7 +211,7 @@ function chooseCCandDOpayment() {
     alert("selectedCC="+selectedCC)
     $.ajax({
      dataType:"script",
-     data:{ccToken : TVA.customerToken, transactionToken: transactionToken, callback: "CBchooseCC"},
+     data:{ccToken : selectedCC, transactionToken: transactionToken, callback: "CBchooseCC"},
      url:"https://164.177.149.82/vault/dopayment.php",
      timeout: 5000
     });
