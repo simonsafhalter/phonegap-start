@@ -103,8 +103,8 @@ CBlogin = function(data) {
         document.getElementById("welcomeuser").innerHTML = "Welcome " + TVA.customerToken;
         if (typeof TVA.customerToken != "undefined" && TVA.customerToken != "") {
             getCCTokens(TVA.customerToken);
-            $("loginscreen").hide();
-            $("mainscreen").show();
+            $("#loginscreen").hide();
+            $("#mainscreen").show();
         } else if (data.error != "") {
             alert("e="+data.error)
         }
