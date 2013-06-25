@@ -213,10 +213,12 @@ CBchooseCC = function(data) {
     try {
         payment = data.payment;
         if (payment=="accepted") {
-            document.getElementById('result').innerHTML = "Payment successfull!";
+            document.getElementById('paymentresponse').innerHTML = "Payment successfull!";
         } else {
-            document.getElementById('result').innerHTML = "Payment error." + data.error;   
+            document.getElementById('paymentresponse').innerHTML = "Payment error." + data.error;   
         }
+        $("#popupcc").hide();      
+        $("#result").show();
     } catch(e){ 
         alert("e="+e);
     }
