@@ -77,6 +77,8 @@ function login() {
            $.ajax({
              dataType:"jsonp",
              jsonpCallback: "CBlogin",
+             error: function(){alert("error2");},
+             success: function(){alert("success2");},
              data:{email : email, password : password/*, callback: 'CBlogin'*/},
              url:"https://164.177.149.82/vault/customerlogin.php",
              timeout: 5000
