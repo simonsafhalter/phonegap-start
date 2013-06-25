@@ -63,20 +63,6 @@ var TVA = {
            }
 }
 
-function getToken() {
-    alert("getToken");  
-    try {
-       $.ajax({
-         dataType:"script",
-         data:{merchant : 'xpto', details : 'tea', total : '5', callback: 'cb'},
-         url:"https://164.177.149.82/vault/generatetoken.php",
-         timeout: 5000
-        });
-    } catch(e){ 
-        alert("e="+e);
-    }
-}
-
 /////////////////////// LOGIN ///////////////////////
 
 function login() {  
@@ -89,8 +75,9 @@ function login() {
         if(email != "" && password != "") {
            alert("ajax");
            $.ajax({
-             dataType:"script",
-             data:{email : email, password : password, callback: 'CBlogin'},
+             dataType:"jsonp",
+             jsonpCallback: "CBlogin",
+             data:{email : email, password : password/*, callback: 'CBlogin'*/},
              url:"https://164.177.149.82/vault/customerlogin.php",
              timeout: 5000
             });
@@ -241,6 +228,21 @@ CBchooseCC = function(data) {
 }
 
 /////////////////////// OTHER STUFF ///////////////////////
+
+
+function getToken() {
+    alert("getToken");  
+    try {
+       $.ajax({
+         dataType:"script",
+         data:{merchant : 'xpto', details : 'tea', total : '5', callback: 'cb'},
+         url:"https://164.177.149.82/vault/generatetoken.php",
+         timeout: 5000
+        });
+    } catch(e){ 
+        alert("e="+e);
+    }
+}
 
 function goPool() {
     $.ajax({
