@@ -38,8 +38,8 @@
         <div class="app">
             <h1>Customer</h1>
             <div id="deviceready" class="blink">  
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+                <!--p class="event listening">Connecting to Device</p>
+                <p class="event received">Device is Ready</p-->
                 <div id="loginscreen">
                     <h2>Login</h2>
                     EM:<input id="email" type="text" value="simon@tvappagency.com"/><br />
@@ -61,6 +61,10 @@
                     <form id="ccradioform">
                     </form>
                     <button id="choosecc" type="button" onclick="chooseCCandDOpayment()">Make Payment!</button>
+                </div>
+                <div id="result">
+                    <h2>Result</h2>
+                    <p id="paymentresponse"></p>
                 </div>
             </div>
         </div>
