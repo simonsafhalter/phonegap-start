@@ -66,14 +66,13 @@ var TVA = {
 /////////////////////// LOGIN ///////////////////////
 
 function login() {  
-    alert("login");
     try { 
         email = document.getElementById('email').value;
         password = document.getElementById('password').value;
         alert(email);
         alert(password);
         if(email != "" && password != "") {
-           alert("ajax");
+           alert("login ajax");
            $.ajax({
              dataType:"jsonp",
              jsonpCallback: "CBlogin",
@@ -97,7 +96,6 @@ CBlogin = function(data) {
     alert("CBlogin");
     try {
         TVA.customerToken = data.customerToken;  
-        alert("ct="+TVA.customerToken);
         
         if (typeof TVA.customerToken != "undefined" && TVA.customerToken != "") {
             document.getElementById("welcomeuser").innerHTML = "Welcome " + TVA.customerToken;
@@ -115,7 +113,6 @@ CBlogin = function(data) {
 /////////////////////// CreditCard TOKENS ///////////////////////
 
 function getCCTokens(token) {
-    alert("getCCTokens");
     try {
        $.ajax({
          dataType:"script",
@@ -129,7 +126,6 @@ function getCCTokens(token) {
 }
 
 CBgetCCTokens = function(data) {  
-    alert("CBgetCCTokens");
     try {
         TVA.CCtokens = data;
         for(var i = 0; i < TVA.CCtokens.length; i++) {
@@ -163,9 +159,7 @@ CBgetCCTokens = function(data) {
 /////////////////////// get order details ///////////////////////
 
 function getOrderDetails() {
-    transactionToken = document.getElementById('orderDetailsToken').value;
-    //alert("tt:"+transactionToken);   
-    //alert("ct:"+TVA.customerToken);   
+    transactionToken = document.getElementById('orderDetailsToken').value;  
     try {
        $.ajax({
          dataType:"script",
