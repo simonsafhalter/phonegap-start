@@ -22,7 +22,7 @@
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <!--link rel="stylesheet" type="text/css" href="css/index.css" /-->
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
         
         <title>TVA_Mastercard</title>
         <script type="text/javascript" src="phonegap.js"></script>
@@ -40,11 +40,13 @@
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
                 <div id="loginscreen">
+                    <h2>Login</h2>
                     EM:<input id="email" type="text" value="simon@tvappagency.com"/><br />
                     PS:<input id="password" type="password" value="123"/><br />
                     <button id="loginbutton" type="button" onclick="login()">Login</button>
                 </div>
                 <div id="mainscreen">
+                    <h2 id="welcomeuser">Welcome</h2>
                     <table id="tokenTable">
                         <tr><td>token</td><td>desc</td></tr>
                     </table>
