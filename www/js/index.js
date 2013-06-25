@@ -52,6 +52,17 @@ var app = {
     }
 };
 
+var TVA = {
+    
+    customerToken: "",
+    CCTokens: null,
+    order: {
+            total: null,
+            details: null,
+            merchant: null
+           }
+}
+
 function getToken() {
     alert("getToken");  
     try {
@@ -89,10 +100,10 @@ function login() {
 CBlogin = function(data) {  
     alert("CBlogin");
     try {
-        customerToken = data.customerToken;
-        alert("t="+customerToken);   
-        if (typeof customerToken != "undefined" && customerToken != "") {
-            getCCTokens(customerToken);
+        TVA.customerToken = data.customerToken;
+        alert("t="+TVA.customerToken);   
+        if (typeof TVA.customerToken != "undefined" && TVA.customerToken != "") {
+            getCCTokens(TVA.customerToken);
         } else if (data.error != "") {
             alert("e="+data.error)
         }
@@ -118,21 +129,64 @@ function getCCTokens(token) {
 CBgetCCTokens = function(data) {  
     alert("CBgetCCTokens");
     try {
-        var tokens = data;
+        TVA.CCtokens = data;
         for(var i = 0; i < tokens.length; i++) {
-            alert(tokens[i].token);
-            alert(tokens[i].description);
+            alert(TVA.CCtokens[i].token);
+            alert(TVA.CCtokens[i].description);
             var table=document.getElementById("tokenTable");
-            var row=table.insertRow(0);
+            var row=table.insertRow(i+1);
             var cell1=row.insertCell(0);
             var cell2=row.insertCell(1);
-            cell1.innerHTML=tokens[i].token;
-            cell2.innerHTML=tokens[i].description;
+            cell1.innerHTML=TVA.CCtokens[i].token;
+            cell2.innerHTML=TVA.CCtokens[i].description;
         }
     } catch(e){ 
         alert("e1="+e);
     }
 }
+
+
+/////
+
+function getOrderDetails(token) {
+    alert("getOrderDetails");
+    transactionToken = document.getElementById('orderDetailsToken').value;
+    alert("tt:"+transactionToken);   
+    alert("ct:"+TVA.customerToken);   
+    try {
+       $.ajax({
+         dataType:"script",
+         data:{customerToken : TVA.customerToken, transactionToken: transactionToken, callback: "CBgetOrderDetails"},
+         url:"https://164.177.149.82/vault/getorderdetails.php",
+         timeout: 5000
+        });
+    } catch(e){ 
+        alert("e="+e);
+    }
+}
+
+CBgetOrderDetails = function(data) {  
+    alert("CBgetOrderDetails");
+    try {
+        TVA.order.total = data.total;
+        TVA.order.details = data.details;
+        TVA.order.merchant = data.merchant;
+        
+        var x;
+        var r=confirm("TVA.order.total \nTVA.order.details \nTVA.order.merchant");
+        if (r==true) {
+            x="You pressed OK!";
+        } else {
+            x="You pressed Cancel!";
+        }
+        alert(x);
+    } catch(e){ 
+        alert("e1="+e);
+    }
+}
+
+////
+
 
 cb = function (data) {  
     try {
