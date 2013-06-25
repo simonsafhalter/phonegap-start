@@ -75,14 +75,14 @@ function login() {
         if(email != "" && password != "") {
            alert("ajax");
            $.ajax({
-             dataType:"json",
-             
-             error: function(xhr, textStatus, errorThrown){
+             dataType:"jsonp",
+             jsonpCallback: "CBlogin",
+             fail: function(xhr, textStatus, errorThrown){
                  alert(xhr.responseText);
                  alert(textStatus);
                  alert(errorThrown);
              },
-             success: function(){alert("successjson");},
+             done: function(){alert("successjson");},
              data:{email : email, password : password/*, callback: 'CBlogin'*/},
              url:"https://164.177.149.82/vault/customerlogin.php",
              timeout: 5000
