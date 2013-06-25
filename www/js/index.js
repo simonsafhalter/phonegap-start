@@ -84,7 +84,10 @@ function login() {
     try { 
         email = document.getElementById('email').value;
         password = document.getElementById('password').value;
+        alert(email);
+        alert(password);
         if(email != "" && password != "") {
+           alert("ajax");
            $.ajax({
              dataType:"script",
              data:{email : email, password : password, callback: 'CBlogin'},
@@ -98,10 +101,13 @@ function login() {
 }
 
 CBlogin = function(data) {  
+    alert("CBlogin");
     try {
         TVA.customerToken = data.customerToken;  
-        document.getElementById("welcomeuser").innerHTML = "Welcome " + TVA.customerToken;
+        alert("ct="+TVA.customerToken);
+        
         if (typeof TVA.customerToken != "undefined" && TVA.customerToken != "") {
+            document.getElementById("welcomeuser").innerHTML = "Welcome " + TVA.customerToken;
             getCCTokens(TVA.customerToken);
             $("#loginscreen").hide();
             $("#mainscreen").show();
@@ -116,6 +122,7 @@ CBlogin = function(data) {
 /////////////////////// CreditCard TOKENS ///////////////////////
 
 function getCCTokens(token) {
+    alert("getCCTokens");
     try {
        $.ajax({
          dataType:"script",
@@ -129,6 +136,7 @@ function getCCTokens(token) {
 }
 
 CBgetCCTokens = function(data) {  
+    alert("CBgetCCTokens");
     try {
         TVA.CCtokens = data;
         for(var i = 0; i < TVA.CCtokens.length; i++) {
