@@ -99,10 +99,11 @@ function login() {
 CBlogin = function(data) {  
     try {
         TVA.customerToken = data.customerToken;  
+        document.getElementById('welcomeuser').innerHTML = "Welcome " + TVA.customerToken;
         if (typeof TVA.customerToken != "undefined" && TVA.customerToken != "") {
             getCCTokens(TVA.customerToken);
-            $("loginscren").hide();
-            $("mainscren").show();
+            $("loginscreen").hide();
+            $("mainscreen").show();
         } else if (data.error != "") {
             alert("e="+data.error)
         }
