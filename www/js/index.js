@@ -65,9 +65,9 @@ function getToken() {
     }
 }
 
-login = function() {
-    try {
-        alert("login");   
+function login() {
+    alert("login");  
+    try { 
         email = document.getElementById('email').value;
         password = document.getElementById('password').value;
         alert("e:"+email);   
