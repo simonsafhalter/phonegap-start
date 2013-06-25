@@ -53,6 +53,7 @@ var app = {
 };
 
 function getToken() {
+    alert("getToken");  
     try {
        $.ajax({
          dataType:"script",
@@ -83,7 +84,7 @@ function login() {
     } catch(e){ 
         alert("e="+e);
     }
-};
+}
 
 CBlogin = function(data) {  
     alert("CBlogin");
@@ -148,7 +149,7 @@ function goScan() {
               alert("Scanning failed: " + error);
           }
        );
-};
+}
 
 
 
