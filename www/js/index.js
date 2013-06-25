@@ -91,7 +91,7 @@ CBlogin = function(data) {
     try {
         customerToken = data.customerToken;
         alert("t="+customerToken);   
-        if (customerToken != "") {
+        if (typeof customerToken != "undefined" && customerToken != "") {
             getCCTokens(customerToken);
         } else if (data.error != "") {
             alert("e="+data.error)
@@ -106,12 +106,31 @@ function getCCTokens(token) {
     try {
        $.ajax({
          dataType:"script",
-         data:{token : token, callback: 'CBgetCCTokens'},
+         data:{customerToken : token, callback: "CBgetCCTokens"},
          url:"https://164.177.149.82/vault/getcctokens.php",
-         timeout: 15000
+         timeout: 5000
         });
     } catch(e){ 
         alert("e="+e);
+    }
+}
+
+CBgetCCTokens = function(data) {  
+    alert("CBgetCCTokens");
+    try {
+        var tokens = data;
+        for(var i = 0; i < tokens.length; i++) {
+            alert(tokens[i].token);
+            alert(tokens[i].description);
+            var table=document.getElementById("tokenTable");
+            var row=table.insertRow(0);
+            var cell1=row.insertCell(0);
+            var cell2=row.insertCell(1);
+            cell1.innerHTML=tokens[i].token;
+            cell2.innerHTML=tokens[i].description;
+        }
+    } catch(e){ 
+        alert("e1="+e);
     }
 }
 
