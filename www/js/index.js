@@ -132,12 +132,26 @@ CBgetCCTokens = function(data) {
     try {
         TVA.CCtokens = data;
         for(var i = 0; i < TVA.CCtokens.length; i++) {
+            // ADD TABLE
             var table=document.getElementById("tokenTable");
             var row=table.insertRow(i+1);
             var cell1=row.insertCell(0);
             var cell2=row.insertCell(1);
             cell1.innerHTML=TVA.CCtokens[i].token;
             cell2.innerHTML=TVA.CCtokens[i].description;
+            
+            // ADD RADIO BUTTONS
+            var radioInput = document.createElement('input');
+            radioInput.setAttribute('type', 'radio');
+            radioInput.setAttribute('name', 'cc');
+            radioInput.setAttribute('value', TVA.CCtokens[i].description);
+            
+            var span = document.createElement('span');
+            span.innerHTML = TVA.CCtokens[i].description;
+            
+            var form = document.getElementById("ccradioform");
+            form.appendChild(radioInput);
+            form.appendChild(span);
         }
     } catch(e){ 
         alert("e="+e);
@@ -175,14 +189,28 @@ CBgetOrderDetails = function(data) {
                       "\nDetails: " + TVA.order.details + 
                       "\nMerchant: " + TVA.order.merchant);
         if (r==true) {
-            x="Confirming payment!";
+            alert("Confirming payment!");
+            $("#mainscreen").hide();
+            $("#popupcc").show();        
         } else {
-            x="Cancelling payment!";
+            alert("Cancelling payment!");
         }
         alert(x);
     } catch(e){ 
         alert("e1="+e);
     }
+}
+
+function chooseCC() {
+    alert("chooseCC");
+    selectedCC = $('input[name="cc"]:checked').val();
+    alert("selectedCC="+selectedCC)
+    $.ajax({
+     dataType:"script",
+     data:{ccToken : TVA.customerToken, transactionToken: transactionToken, callback: "CBgetOrderDetails"},
+     url:"https://164.177.149.82/vault/dopayment.php",
+     timeout: 5000
+    });
 }
 
 /////////////////////// OTHER STUFF ///////////////////////
