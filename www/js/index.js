@@ -77,8 +77,9 @@ function getToken() {
     }
 }
 
-function login() {
-    alert("login");  
+/////////////////////// LOGIN ///////////////////////
+
+function login() {  
     try { 
         email = document.getElementById('email').value;
         password = document.getElementById('password').value;
@@ -96,22 +97,23 @@ function login() {
 }
 
 CBlogin = function(data) {  
-    alert("CBlogin");
     try {
-        TVA.customerToken = data.customerToken;
-        alert("t="+TVA.customerToken);   
+        TVA.customerToken = data.customerToken;  
         if (typeof TVA.customerToken != "undefined" && TVA.customerToken != "") {
             getCCTokens(TVA.customerToken);
+            $("loginscren").hide();
+            $("mainscren").show();
         } else if (data.error != "") {
             alert("e="+data.error)
         }
     } catch(e){ 
-        alert("e1="+e);
+        alert("e="+e);
     }
 }
 
+/////////////////////// CreditCard TOKENS ///////////////////////
+
 function getCCTokens(token) {
-    alert("getCCTokens");
     try {
        $.ajax({
          dataType:"script",
@@ -125,12 +127,9 @@ function getCCTokens(token) {
 }
 
 CBgetCCTokens = function(data) {  
-    alert("CBgetCCTokens");
     try {
         TVA.CCtokens = data;
         for(var i = 0; i < TVA.CCtokens.length; i++) {
-            alert(TVA.CCtokens[i].token);
-            alert(TVA.CCtokens[i].description);
             var table=document.getElementById("tokenTable");
             var row=table.insertRow(i+1);
             var cell1=row.insertCell(0);
@@ -139,12 +138,11 @@ CBgetCCTokens = function(data) {
             cell2.innerHTML=TVA.CCtokens[i].description;
         }
     } catch(e){ 
-        alert("e1="+e);
+        alert("e="+e);
     }
 }
 
-
-/////
+/////////////////////// get order details ///////////////////////
 
 function getOrderDetails() {
     alert("getOrderDetails");
@@ -185,16 +183,7 @@ CBgetOrderDetails = function(data) {
     }
 }
 
-////
-
-
-cb = function (data) {  
-    try {
-        alert("d=" +data.token);
-    } catch(e){ 
-        alert("e1="+e);
-    }
-}
+/////////////////////// OTHER STUFF ///////////////////////
 
 function goPool() {
     $.ajax({
