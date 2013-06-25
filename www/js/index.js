@@ -180,8 +180,8 @@ function getOrderDetails() {
 CBgetOrderDetails = function(data) {  
     try {
         
-        if (typeof data.error != undefined) {
-            alert(data.error)
+        if (typeof data.error != "undefined") {
+            alert(data.error);
         } else {
             TVA.order.total = data.total;
             TVA.order.details = data.details;
