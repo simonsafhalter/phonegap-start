@@ -80,7 +80,7 @@ function getToken() {
 /////////////////////// LOGIN ///////////////////////
 
 function login() {  
-    alert("login");
+    //alert("login");
     try { 
         email = document.getElementById('email').value;
         password = document.getElementById('password').value;
@@ -163,8 +163,8 @@ CBgetCCTokens = function(data) {
 
 function getOrderDetails() {
     transactionToken = document.getElementById('orderDetailsToken').value;
-    alert("tt:"+transactionToken);   
-    alert("ct:"+TVA.customerToken);   
+    //alert("tt:"+transactionToken);   
+    //alert("ct:"+TVA.customerToken);   
     try {
        $.ajax({
          dataType:"script",
@@ -194,12 +194,11 @@ CBgetOrderDetails = function(data) {
             alert("Cancelling payment!");
         }
     } catch(e){ 
-        alert("e1="+e);
+        alert("e="+e);
     }
 }
 
 function chooseCCandDOpayment() {
-    alert("chooseCC");
     selectedCC = $('input[name="cc"]:checked').val();
     alert("selectedCC="+selectedCC)
     $.ajax({
@@ -208,6 +207,19 @@ function chooseCCandDOpayment() {
      url:"https://164.177.149.82/vault/dopayment.php",
      timeout: 5000
     });
+}
+
+CBchooseCC = function(data) {  
+    try {
+        payment = data.payment;
+        if (payment=="accepted") {
+            document.getElementById('result').innerHTML = "Payment successfull!";
+        } else {
+            document.getElementById('result').innerHTML = "Payment error." + data.error;   
+        }
+    } catch(e){ 
+        alert("e="+e);
+    }
 }
 
 /////////////////////// OTHER STUFF ///////////////////////
