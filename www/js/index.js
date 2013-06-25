@@ -148,7 +148,7 @@ CBgetCCTokens = function(data) {
 
 /////
 
-function getOrderDetails(token) {
+function getOrderDetails() {
     alert("getOrderDetails");
     transactionToken = document.getElementById('orderDetailsToken').value;
     alert("tt:"+transactionToken);   
