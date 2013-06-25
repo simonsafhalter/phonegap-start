@@ -80,7 +80,7 @@ function getToken() {
 /////////////////////// LOGIN ///////////////////////
 
 function login() {  
-    //alert("login");
+    alert("login");
     try { 
         email = document.getElementById('email').value;
         password = document.getElementById('password').value;
