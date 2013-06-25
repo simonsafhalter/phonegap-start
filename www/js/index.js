@@ -78,6 +78,7 @@ function login() {
              dataType:"jsonp",
              jsonpCallback: "CBlogin",
              error: function(xhr, textStatus, errorThrown){
+                 alert(xhr.responseText);
                  alert(textStatus);
                  alert(errorThrown);
              },
