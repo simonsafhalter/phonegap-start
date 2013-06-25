@@ -36,18 +36,22 @@
     <body>
         <div class="app">
             <h1>Customer</h1>
-            <div id="deviceready" class="blink">
+            <div id="deviceready" class="blink">  
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
-                EM:<input id="email" type="text" value="simon@tvappagency.com"/><br />
-                PS:<input id="password" type="text" value="123"/><br />
-                <button id="loginbutton" type="button" onclick="login()">Login</button>
-                <table id="tokenTable">
-                    <tr><td>token</td><td>desc</td></tr>
-                </table>
-                Order details token:<br />
-                <input id="orderDetailsToken" type="text" value="STAR51c87b249e51b"/><br />
-                <button id="getorderdetails" type="button" onclick="getOrderDetails()">GetOrderDetails</button>
+                <div id="loginscreen">
+                    EM:<input id="email" type="text" value="simon@tvappagency.com"/><br />
+                    PS:<input id="password" type="password" value="123"/><br />
+                    <button id="loginbutton" type="button" onclick="login()">Login</button>
+                </div>
+                <div id="mainscreen">
+                    <table id="tokenTable">
+                        <tr><td>token</td><td>desc</td></tr>
+                    </table>
+                    Order details token:<br />
+                    <input id="orderDetailsToken" type="text" value="STAR51c87b249e51b"/><br />
+                    <button id="getorderdetails" type="button" onclick="getOrderDetails()">GetOrderDetails</button>
+                </div>
             </div>
         </div>
     </body>
