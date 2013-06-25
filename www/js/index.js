@@ -58,6 +58,55 @@ function getToken() {
          dataType:"script",
          data:{merchant : 'xpto', details : 'tea', total : '5', callback: 'cb'},
          url:"https://164.177.149.82/vault/generatetoken.php",
+         timeout: 5000
+        });
+    } catch(e){ 
+        alert("e="+e);
+    }
+}
+
+login = function() {
+    try {
+        alert("login");   
+        email = document.getElementById('email').value;
+        password = document.getElementById('password').value;
+        alert("e:"+email);   
+        alert("p:"+password);   
+        if(email != "" && password != "") {
+           $.ajax({
+             dataType:"script",
+             data:{email : email, password : password, callback: 'CBlogin'},
+             url:"https://164.177.149.82/vault/customerlogin.php",
+             timeout: 5000
+            });
+        }
+    } catch(e){ 
+        alert("e="+e);
+    }
+};
+
+CBlogin = function(data) {  
+    alert("CBlogin");
+    try {
+        customerToken = data.customerToken;
+        alert("t="+customerToken);   
+        if (customerToken != "") {
+            getCCTokens(customerToken);
+        } else if data.error != "" {
+            alert("e="+data.error)
+        }
+    } catch(e){ 
+        alert("e1="+e);
+    }
+}
+
+function getCCTokens(token) {
+    alert("getCCTokens");
+    try {
+       $.ajax({
+         dataType:"script",
+         data:{token : token, callback: 'CBgetCCTokens'},
+         url:"https://164.177.149.82/vault/getcctokens.php",
          timeout: 15000
         });
     } catch(e){ 
@@ -100,4 +149,6 @@ function goScan() {
           }
        );
 };
+
+
 
