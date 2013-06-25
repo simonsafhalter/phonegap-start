@@ -80,6 +80,7 @@ function getToken() {
 /////////////////////// LOGIN ///////////////////////
 
 function login() {  
+    alert("login");
     try { 
         email = document.getElementById('email').value;
         password = document.getElementById('password').value;
@@ -99,7 +100,7 @@ function login() {
 CBlogin = function(data) {  
     try {
         TVA.customerToken = data.customerToken;  
-        document.getElementById('welcomeuser').innerHTML = "Welcome " + TVA.customerToken;
+        document.getElementById("welcomeuser").innerHTML = "Welcome " + TVA.customerToken;
         if (typeof TVA.customerToken != "undefined" && TVA.customerToken != "") {
             getCCTokens(TVA.customerToken);
             $("loginscreen").hide();
