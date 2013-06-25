@@ -144,7 +144,7 @@ CBgetCCTokens = function(data) {
             var radioInput = document.createElement('input');
             radioInput.setAttribute('type', 'radio');
             radioInput.setAttribute('name', 'cc');
-            radioInput.setAttribute('value', TVA.CCtokens[i].description);
+            radioInput.setAttribute('value', TVA.CCtokens[i].token);
             
             var span = document.createElement('span');
             span.innerHTML = TVA.CCtokens[i].description;
