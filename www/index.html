@@ -39,13 +39,15 @@
             <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
-                EM:<input id="email" type="text" /><br />
-                PS:<input id="password" type="text" /><br />
+                EM:<input id="email" type="text" value="simon@tvappagency.com"/><br />
+                PS:<input id="password" type="text" value="123"/><br />
                 <button id="loginbutton" type="button" onclick="login()">Login</button>
                 <table id="tokenTable">
                     <tr><td>token</td><td>desc</td></tr>
                 </table>
-                <!--button id="gettoken" type="button" onclick="getToken()">GetToken</button-->
+                Order details token:<br />
+                <input id="orderDetailsToken" type="text" value="STAR51c87b249e51b"/><br />
+                <button id="getorderdetails" type="button" onclick="getOrderDetails()">GetOrderDetails</button>
             </div>
         </div>
     </body>
