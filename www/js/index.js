@@ -152,6 +152,7 @@ CBgetCCTokens = function(data) {
             var form = document.getElementById("ccradioform");
             form.appendChild(radioInput);
             form.appendChild(span);
+            form.appendChild(document.createElement("br"));
         }
     } catch(e){ 
         alert("e="+e);
@@ -161,7 +162,6 @@ CBgetCCTokens = function(data) {
 /////////////////////// get order details ///////////////////////
 
 function getOrderDetails() {
-    alert("getOrderDetails");
     transactionToken = document.getElementById('orderDetailsToken').value;
     alert("tt:"+transactionToken);   
     alert("ct:"+TVA.customerToken);   
@@ -178,13 +178,11 @@ function getOrderDetails() {
 }
 
 CBgetOrderDetails = function(data) {  
-    alert("CBgetOrderDetails");
     try {
         TVA.order.total = data.total;
         TVA.order.details = data.details;
         TVA.order.merchant = data.merchant;
         
-        var x;
         var r=confirm("Total: " + TVA.order.total + 
                       "\nDetails: " + TVA.order.details + 
                       "\nMerchant: " + TVA.order.merchant);
@@ -195,19 +193,18 @@ CBgetOrderDetails = function(data) {
         } else {
             alert("Cancelling payment!");
         }
-        alert(x);
     } catch(e){ 
         alert("e1="+e);
     }
 }
 
-function chooseCC() {
+function chooseCCandDOpayment() {
     alert("chooseCC");
     selectedCC = $('input[name="cc"]:checked').val();
     alert("selectedCC="+selectedCC)
     $.ajax({
      dataType:"script",
-     data:{ccToken : TVA.customerToken, transactionToken: transactionToken, callback: "CBgetOrderDetails"},
+     data:{ccToken : TVA.customerToken, transactionToken: transactionToken, callback: "CBchooseCC"},
      url:"https://164.177.149.82/vault/dopayment.php",
      timeout: 5000
     });
