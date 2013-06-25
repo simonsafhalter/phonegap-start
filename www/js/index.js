@@ -93,7 +93,7 @@ CBlogin = function(data) {
         alert("t="+customerToken);   
         if (customerToken != "") {
             getCCTokens(customerToken);
-        } else if data.error != "" {
+        } else if (data.error != "") {
             alert("e="+data.error)
         }
     } catch(e){ 
