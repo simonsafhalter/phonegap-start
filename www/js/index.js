@@ -179,24 +179,32 @@ function getOrderDetails() {
 
 CBgetOrderDetails = function(data) {  
     try {
-        TVA.order.total = data.total;
-        TVA.order.details = data.details;
-        TVA.order.merchant = data.merchant;
         
-        var r=confirm("Total: " + TVA.order.total + 
-                      "\nDetails: " + TVA.order.details + 
-                      "\nMerchant: " + TVA.order.merchant);
-        if (r==true) {
-            alert("Confirming payment!");
-            $("#mainscreen").hide();
-            $("#popupcc").show();        
+        if (typeof data.error != undefined) {
+            alert(data.error)
         } else {
-            alert("Cancelling payment!");
+            TVA.order.total = data.total;
+            TVA.order.details = data.details;
+            TVA.order.merchant = data.merchant;
+            
+            var r=confirm("Total: " + TVA.order.total + 
+                          "\nDetails: " + TVA.order.details + 
+                          "\nMerchant: " + TVA.order.merchant);
+                          
+            if (r==true) {
+                alert("Confirming payment!");
+                $("#mainscreen").hide();
+                $("#popupcc").show();        
+            } else {
+                alert("Cancelling payment!");
+            }              
         }
     } catch(e){ 
         alert("e="+e);
     }
 }
+
+/////////////////////// Choose CC, DO Payment! ///////////////////////
 
 function chooseCCandDOpayment() {
     selectedCC = $('input[name="cc"]:checked').val();
@@ -241,17 +249,17 @@ function goPool() {
 
 function goScan() {
     
-       scanner.scan(
-          function (result) {
-              alert("We got a barcode\n" +
-                    "Result: " + result.text + "\n" +
-                    "Format: " + result.format + "\n" +
-                    "Cancelled: " + result.cancelled);
-          }, 
-          function (error) {
-              alert("Scanning failed: " + error);
-          }
-       );
+    scanner.scan(
+        function (result) {
+            alert("We got a barcode\n" +
+                "Result: " + result.text + "\n" +
+                "Format: " + result.format + "\n" +
+                "Cancelled: " + result.cancelled);
+        }, 
+        function (error) {
+            alert("Scanning failed: " + error);
+        }
+    );
 }
 
 
