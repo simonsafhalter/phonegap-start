@@ -10,11 +10,19 @@
     display: none;
 }
 
+#loginscreenM {
+    display: none;
+}
+
 #loginscreen {
     display: none;
 }
  
-#mainscreen {
+#mainscreenC {
+    display: none;
+}
+
+#mainscreenM {
     display: none;
 }
 
