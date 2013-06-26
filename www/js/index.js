@@ -148,7 +148,7 @@ CBlogin = function(data) {
         TVA.customerToken = data.customerToken;  
         
         if (typeof TVA.customerToken != "undefined" && TVA.customerToken != "") {
-            document.getElementById("welcomeuser").innerHTML = "Welcome " + TVA.customerToken;
+            document.getElementById("welcomeuserC").innerHTML = "Welcome " + TVA.customerToken;
             getCCTokens(TVA.customerToken);
             $("#loginscreen").hide();
             $("#loginscreenM").hide();
@@ -171,8 +171,8 @@ CBloginM = function(data) {
         TVA.merchantToken = data.merchantToken;  
         
         if (typeof TVA.merchantToken != "undefined" && TVA.merchantToken != "") {
-            document.getElementById("welcomeuser").innerHTML = "Welcome " + TVA.merchantToken;
-            $("#loginscreen").hide();
+            document.getElementById("welcomeuserM").innerHTML = "Welcome " + TVA.merchantToken;
+            $("#loginscreenM").hide();
             $("#mainscreenM").show();
         } else if (data.error != "") {
             alert("e="+data.error)
@@ -307,7 +307,7 @@ function generateToken() {
     try {
        $.ajax({
          dataType:"script",
-         data:{merchant : 'xpto', details : 'tea', total : '5', callback: 'cb'},
+         data:{merchant : TVA.merchantToken, details : 'tea', total : '5', callback: 'CBgenerateToken'},
          url:"http://164.177.149.82/vault/generatetoken.php",
          timeout: 5000
         });
@@ -316,6 +316,20 @@ function generateToken() {
     }
 }
 
+CBgenerateToken = function(data) {  
+    try {
+        token = data.token;
+        
+        if (typeof token != "undefined" && token != "") {
+            document.getElementById('generatedToken').innerHTML = token;
+        } else {
+            document.getElementById('generatedToken').innerHTML = data.error;
+        }
+    } catch(e){ 
+        alert("e="+e);
+    }
+}
+///////////////////////////////////////////////////////////
 function goPool() {
     $.ajax({
         url: "/server/api/function",
