@@ -26,14 +26,13 @@
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         
         <title>TVA_Mastercard</title>
-        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="barcodescanner.js"></script>
         <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
         </script>
-        <!--script type="text/javascript" src="http://164.177.149.82/vault/customerlogin.php?email=simon@tvappagency.com&password=123&callback=CBlogin"></script-->
     </head>
     <body>
         <div class="app">
@@ -60,8 +59,9 @@
                             <tr><th>token</th><th>desc</th></tr>
                         </table>
                         <br />
-                        Order details token:<br />
-                        <input id="orderDetailsToken" type="text" value="STAR51c87b249e51b"/><br />
+                        Input Order details token:<br />
+                        <input id="orderDetailsToken" type="text" value=""/><br />
+    					<button id="scanQR" type="button" onclick="goScan()">ScanQR</button>
                         <button id="getorderdetails" type="button" onclick="getOrderDetails()">GetOrderDetails</button>
                     </div>
                     <div id="popupcc">
@@ -90,6 +90,11 @@
                         Token:<br />
                         <div id="generatedToken">
                             Press GenerateToken!
+                        </div>
+						<br /><br />
+						Transaction status:<br />
+                        <div id="transactionStatus">
+                            -
                         </div>
                     </div>
                 </div>
