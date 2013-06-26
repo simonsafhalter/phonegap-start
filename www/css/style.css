@@ -2,6 +2,14 @@
     display: none;
 }
 
+#merchant {
+    display: none;
+}
+
+#customer {
+    display: block;
+}
+
 #loginscreen {
     display: block;
 }
