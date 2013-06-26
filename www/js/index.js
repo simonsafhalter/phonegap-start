@@ -89,44 +89,54 @@ function merchant() {
 }
 /////////////////////// LOGIN ///////////////////////
 
-function login() {  
+function loginC() {  
     try { 
-        email = document.getElementById('email').value;
-        password = document.getElementById('password').value;
+        email = document.getElementById('emailC').value;
+        password = document.getElementById('passwordC').value;
         alert(email);
         alert(password);
         if(email != "" && password != "") {
             alert("login ajax");
-            if (TVA.side = 0) {
-                $.ajax({
-                dataType:"jsonp",
-                    jsonpCallback: "CBlogin",
-                    data:{email : email, password : password/*, callback: 'CBlogin'*/},
-                    url:"http://164.177.149.82/vault/customerlogin.php",
-                    timeout: 5000
-                }).done(function(){alert("successjson");}).fail(
-                    function(xhr, textStatus, errorThrown){
-                     alert(xhr.responseText);
-                     alert(textStatus);
-                     alert(errorThrown);
-                 });
-            } else {
-                $.ajax({
-                dataType:"jsonp",
-                    jsonpCallback: "CBloginM",
-                    data:{email : email, password : password/*, callback: 'CBlogin'*/},
-                    url:"http://164.177.149.82/vault/merchantlogin.php",
-                    timeout: 5000
-                }).done(function(){alert("successjson");}).fail(
-                    function(xhr, textStatus, errorThrown){
-                     alert(xhr.responseText);
-                     alert(textStatus);
-                     alert(errorThrown);
-                 });
-            }
-            
-            
+            $.ajax({
+            dataType:"jsonp",
+                jsonpCallback: "CBlogin",
+                data:{email : email, password : password/*, callback: 'CBlogin'*/},
+                url:"http://164.177.149.82/vault/customerlogin.php",
+                timeout: 5000
+            }).done(function(){alert("successjson");}).fail(
+                function(xhr, textStatus, errorThrown){
+                 alert(xhr.responseText);
+                 alert(textStatus);
+                 alert(errorThrown);
+             });
         }
+    } catch(e){ 
+        alert("e="+e);
+    }
+}
+
+function loginM() {  
+    try { 
+        email = document.getElementById('emailM').value;
+        password = document.getElementById('passwordM').value;
+        alert(email);
+        alert(password);
+        if(email != "" && password != "") {
+            alert("login ajax");
+            $.ajax({
+            dataType:"jsonp",
+                jsonpCallback: "CBloginM",
+                data:{email : email, password : password/*, callback: 'CBlogin'*/},
+                url:"http://164.177.149.82/vault/merchantlogin.php",
+                timeout: 5000
+            }).done(function(){alert("successjson");}).fail(
+                function(xhr, textStatus, errorThrown){
+                 alert(xhr.responseText);
+                 alert(textStatus);
+                 alert(errorThrown);
+             });
+        }
+   
     } catch(e){ 
         alert("e="+e);
     }
@@ -142,7 +152,7 @@ CBlogin = function(data) {
             getCCTokens(TVA.customerToken);
             $("#loginscreen").hide();
             $("#loginscreenM").hide();
-            if (TVA.side = 0) {
+            if (TVA.side == 0) {
                 $("#mainscreenC").show();
             } else {
                 $("#mainscreenM").show();
