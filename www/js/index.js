@@ -63,6 +63,8 @@ var TVA = {
            }
 }
 
+/////////////////////// CHOOSE ///////////////////////
+
 /////////////////////// LOGIN ///////////////////////
 
 function login() {  
@@ -77,7 +79,7 @@ function login() {
              dataType:"jsonp",
              jsonpCallback: "CBlogin",
              data:{email : email, password : password/*, callback: 'CBlogin'*/},
-             url:"https://164.177.149.82/vault/customerlogin.php",
+             url:"http://164.177.149.82/vault/customerlogin.php",
              timeout: 5000
             }).done(function(){alert("successjson");}).fail(
                 function(xhr, textStatus, errorThrown){
@@ -117,7 +119,7 @@ function getCCTokens(token) {
        $.ajax({
          dataType:"script",
          data:{customerToken : token, callback: "CBgetCCTokens"},
-         url:"https://164.177.149.82/vault/getcctokens.php",
+         url:"http://164.177.149.82/vault/getcctokens.php",
          timeout: 5000
         });
     } catch(e){ 
@@ -164,7 +166,7 @@ function getOrderDetails() {
        $.ajax({
          dataType:"script",
          data:{customerToken : TVA.customerToken, transactionToken: transactionToken, callback: "CBgetOrderDetails"},
-         url:"https://164.177.149.82/vault/getorderdetails.php",
+         url:"http://164.177.149.82/vault/getorderdetails.php",
          timeout: 5000
         });
     } catch(e){ 
@@ -207,7 +209,7 @@ function chooseCCandDOpayment() {
     $.ajax({
      dataType:"script",
      data:{ccToken : selectedCC, transactionToken: transactionToken, callback: "CBchooseCC"},
-     url:"https://164.177.149.82/vault/dopayment.php",
+     url:"http://164.177.149.82/vault/dopayment.php",
      timeout: 5000
     });
 }
@@ -236,7 +238,7 @@ function getToken() {
        $.ajax({
          dataType:"script",
          data:{merchant : 'xpto', details : 'tea', total : '5', callback: 'cb'},
-         url:"https://164.177.149.82/vault/generatetoken.php",
+         url:"http://164.177.149.82/vault/generatetoken.php",
          timeout: 5000
         });
     } catch(e){ 
