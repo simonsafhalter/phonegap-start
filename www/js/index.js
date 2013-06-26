@@ -56,6 +56,7 @@ var TVA = {
     side: 0, // 0 - customer, 1 - merchant
     customerToken: "",
     merchantToken: "",
+    transactionToken: "",
     CCTokens: null,
     order: {
             total: null,
@@ -318,17 +319,51 @@ function generateToken() {
 
 CBgenerateToken = function(data) {  
     try {
-        token = data.token;
+        TVA.transactionToken = data.token;
         
-        if (typeof token != "undefined" && token != "") {
-            document.getElementById('generatedToken').innerHTML = token;
+        if (typeof TVA.transactionToken != "undefined" && TVA.transactionToken != "") {
+			// google QR code generation
+			qrCodeUrl = "https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl="+TVA.transactionToken+"&choe=UTF-8&chld=L";
+            document.getElementById('generatedToken').innerHTML = "<img src=\"" + qrCodeUrl + "\">";
         } else {
             document.getElementById('generatedToken').innerHTML = data.error;
         }
+		getTransactionStatus();
     } catch(e){ 
         alert("e="+e);
     }
 }
+
+///////////////////////////// TRANSACTION RESULT ///////////////////////////////
+
+function getTransactionStatus() { 
+    try {
+       $.ajax({
+         dataType:"script",
+         data:{transactionToken : TVA.transactionToken, callback: 'CBgetTransactionStatus'},
+         url:"http://164.177.149.82/vault/transactionresult.php",
+         timeout: 5000
+        });
+    } catch(e){ 
+        alert("e="+e);
+    }
+}
+
+CBgetTransactionStatus = function(data) {  
+    try {
+		transactionStatus = data.transactionStatus;
+        
+        if (typeof transactionStatus != "undefined" && transactionStatus != "") {
+            document.getElementById('transactionStatus').innerHTML = transactionStatus;
+        } else {
+            document.getElementById('transactionStatus').innerHTML = "Error: " + data.error;
+        }
+		window.setTimeout(getTransactionStatus(),3000);
+    } catch(e){ 
+        alert("e="+e);
+    }
+}
+
 ///////////////////////////////////////////////////////////
 function goPool() {
     $.ajax({
