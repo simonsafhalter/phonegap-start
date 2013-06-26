@@ -65,6 +65,25 @@ var TVA = {
 
 /////////////////////// CHOOSE ///////////////////////
 
+function customer() {  
+    try { 
+        $("#firstscreen").hide();
+        $("#customer").show();
+        $("#loginscreen").show();
+    } catch(e){ 
+        alert("e="+e);
+    }
+}
+
+function merchant() {  
+    try { 
+        $("#firstscreen").hide();
+        $("#merchant").show();
+        $("#loginscreenC").show();
+    } catch(e){ 
+        alert("e="+e);
+    }
+}
 /////////////////////// LOGIN ///////////////////////
 
 function login() {  
