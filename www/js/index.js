@@ -144,7 +144,7 @@ CBlogin = function(data) {
             $("#loginscreenM").hide();
             if (TVA.side = 0) {
                 $("#mainscreenC").show();
-            else {
+            } else {
                 $("#mainscreenM").show();
             }
         } else if (data.error != "") {
