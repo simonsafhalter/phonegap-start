@@ -141,7 +141,12 @@ CBlogin = function(data) {
             document.getElementById("welcomeuser").innerHTML = "Welcome " + TVA.customerToken;
             getCCTokens(TVA.customerToken);
             $("#loginscreen").hide();
-            $("#mainscreen").show();
+            $("#loginscreenM").hide();
+            if (TVA.side = 0) {
+                $("#mainscreenC").show();
+            else {
+                $("#mainscreenM").show();
+            }
         } else if (data.error != "") {
             alert("e="+data.error)
         }
