@@ -40,32 +40,47 @@
             <div id="deviceready" class="blink">  
                 <!--p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p-->
-                <div id="loginscreen">
-                    <h2>Login</h2>
-                    EM:<input id="email" type="text" value="simon@tvappagency.com"/><br />
-                    PS:<input id="password" type="password" value="123"/><br />
-                    <button id="loginbutton" type="button" onclick="login()">Login</button>
+                <div id="firstscreen">
+                    Customer or Merchant?
+                    <button id="customerbutton" type="button" onclick="customer()">Customer</button>
+                    <button id="merchantbutton" type="button" onclick="merchant()">Merchant</button>
                 </div>
-                <div id="mainscreen">
-                    <h2 id="welcomeuser">Welcome</h2>
-                    <h3>CreditCards</h3>
-                    <table id="tokenTable">
-                        <tr><th>token</th><th>desc</th></tr>
-                    </table>
-                    <br />
-                    Order details token:<br />
-                    <input id="orderDetailsToken" type="text" value="STAR51c87b249e51b"/><br />
-                    <button id="getorderdetails" type="button" onclick="getOrderDetails()">GetOrderDetails</button>
+                <div id="customer">
+                    <div id="loginscreen">
+                        <h2>Login</h2>
+                        EM:<input id="email" type="text" value="simon@tvappagency.com"/><br />
+                        PS:<input id="password" type="password" value="123"/><br />
+                        <button id="loginbutton" type="button" onclick="login()">Login</button>
+                    </div>
+                    <div id="mainscreen">
+                        <h2 id="welcomeuser">Welcome</h2>
+                        <h3>CreditCards</h3>
+                        <table id="tokenTable">
+                            <tr><th>token</th><th>desc</th></tr>
+                        </table>
+                        <br />
+                        Order details token:<br />
+                        <input id="orderDetailsToken" type="text" value="STAR51c87b249e51b"/><br />
+                        <button id="getorderdetails" type="button" onclick="getOrderDetails()">GetOrderDetails</button>
+                    </div>
+                    <div id="popupcc">
+                        <h2>Select CreditCard</h2>
+                        <form id="ccradioform">
+                        </form>
+                        <button id="choosecc" type="button" onclick="chooseCCandDOpayment()">Make Payment!</button>
+                    </div>
+                    <div id="result">
+                        <h2>Result</h2>
+                        <p id="paymentresponse"></p>
+                    </div>
                 </div>
-                <div id="popupcc">
-                    <h2>Select CreditCard</h2>
-                    <form id="ccradioform">
-                    </form>
-                    <button id="choosecc" type="button" onclick="chooseCCandDOpayment()">Make Payment!</button>
-                </div>
-                <div id="result">
-                    <h2>Result</h2>
-                    <p id="paymentresponse"></p>
+                <div id="customer">
+                    <div id="loginscreenC">
+                        <h2>Login</h2>
+                        EM:<input id="email" type="text" value="simon@tvappagency.com"/><br />
+                        PS:<input id="password" type="password" value="123"/><br />
+                        <button id="loginbutton" type="button" onclick="loginC()">Login</button>
+                    </div>
                 </div>
             </div>
         </div>
