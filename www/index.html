@@ -37,7 +37,6 @@
     </head>
     <body>
         <div class="app">
-            <h1>Customer</h1>
             <div id="deviceready" class="blink">  
                 <!--p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p-->
@@ -47,6 +46,7 @@
                     <button id="merchantbutton" type="button" onclick="merchant()">Merchant</button>
                 </div>
                 <div id="customer">
+                    <h1>Customer</h1>
                     <div id="loginscreen">
                         <h2>Login Customer</h2>
                         EM:<input id="emailC" type="text" value="simon@tvappagency.com"/><br />
@@ -76,6 +76,7 @@
                     </div>
                 </div>
                 <div id="merchant">
+                    <h1>Merchant</h1>
                     <div id="loginscreenM">
                         <h2>Login Merchant</h2>
                         EM:<input id="emailM" type="text" value="starbucks@example.com"/><br />
@@ -85,7 +86,7 @@
                     <div id="mainscreenM">
                         <h2 id="welcomeuserM">Welcome</h2>
                         Generate order token:<br />
-                        <button id="generateToken" type="button" onclick="generateToken()">GenerateToken</button>
+                        <button id="generateToken" type="button" onclick="generateToken()">GenerateToken</button><br /><br />
                         Token:<br />
                         <div id="generatedToken">
                             Press GenerateToken!
