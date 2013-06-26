@@ -53,8 +53,9 @@ var app = {
 };
 
 var TVA = {
-    
+    side: 0, // 0 - customer, 1 - merchant
     customerToken: "",
+    merchantToken: "",
     CCTokens: null,
     order: {
             total: null,
@@ -67,6 +68,7 @@ var TVA = {
 
 function customer() {  
     try { 
+        TVA.side = 0;
         $("#firstscreen").hide();
         $("#customer").show();
         $("#loginscreen").show();
@@ -77,9 +79,10 @@ function customer() {
 
 function merchant() {  
     try { 
+        TVA.side = 1;
         $("#firstscreen").hide();
         $("#merchant").show();
-        $("#loginscreenC").show();
+        $("#loginscreenM").show();
     } catch(e){ 
         alert("e="+e);
     }
@@ -93,20 +96,36 @@ function login() {
         alert(email);
         alert(password);
         if(email != "" && password != "") {
-           alert("login ajax");
-           $.ajax({
-             dataType:"jsonp",
-             jsonpCallback: "CBlogin",
-             data:{email : email, password : password/*, callback: 'CBlogin'*/},
-             url:"http://164.177.149.82/vault/customerlogin.php",
-             timeout: 5000
-            }).done(function(){alert("successjson");}).fail(
-                function(xhr, textStatus, errorThrown){
-                 alert(xhr.responseText);
-                 alert(textStatus);
-                 alert(errorThrown);
-             }
-                );
+            alert("login ajax");
+            if (TVA.side = 0) {
+                $.ajax({
+                dataType:"jsonp",
+                    jsonpCallback: "CBlogin",
+                    data:{email : email, password : password/*, callback: 'CBlogin'*/},
+                    url:"http://164.177.149.82/vault/customerlogin.php",
+                    timeout: 5000
+                }).done(function(){alert("successjson");}).fail(
+                    function(xhr, textStatus, errorThrown){
+                     alert(xhr.responseText);
+                     alert(textStatus);
+                     alert(errorThrown);
+                 });
+            } else {
+                $.ajax({
+                dataType:"jsonp",
+                    jsonpCallback: "CBloginM",
+                    data:{email : email, password : password/*, callback: 'CBlogin'*/},
+                    url:"http://164.177.149.82/vault/merchantlogin.php",
+                    timeout: 5000
+                }).done(function(){alert("successjson");}).fail(
+                    function(xhr, textStatus, errorThrown){
+                     alert(xhr.responseText);
+                     alert(textStatus);
+                     alert(errorThrown);
+                 });
+            }
+            
+            
         }
     } catch(e){ 
         alert("e="+e);
@@ -123,6 +142,23 @@ CBlogin = function(data) {
             getCCTokens(TVA.customerToken);
             $("#loginscreen").hide();
             $("#mainscreen").show();
+        } else if (data.error != "") {
+            alert("e="+data.error)
+        }
+    } catch(e){ 
+        alert("e="+e);
+    }
+}
+
+CBloginM = function(data) {  
+    alert("CBloginM");
+    try {
+        TVA.merchantToken = data.merchantToken;  
+        
+        if (typeof TVA.merchantToken != "undefined" && TVA.merchantToken != "") {
+            document.getElementById("welcomeuser").innerHTML = "Welcome " + TVA.merchantToken;
+            $("#loginscreen").hide();
+            $("#mainscreenM").show();
         } else if (data.error != "") {
             alert("e="+data.error)
         }
@@ -209,7 +245,7 @@ CBgetOrderDetails = function(data) {
                           
             if (r==true) {
                 alert("Confirming payment!");
-                $("#mainscreen").hide();
+                $("#mainscreenC").hide();
                 $("#popupcc").show();        
             } else {
                 alert("Cancelling payment!");
@@ -248,11 +284,11 @@ CBchooseCC = function(data) {
     }
 }
 
-/////////////////////// OTHER STUFF ///////////////////////
+/////////////////////// MERCHANT GENERATE TOKEN ///////////////////////
 
 
-function getToken() {
-    alert("getToken");  
+function generateToken() {
+    alert("generateToken");  
     try {
        $.ajax({
          dataType:"script",
