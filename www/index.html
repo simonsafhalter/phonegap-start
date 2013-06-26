@@ -33,7 +33,7 @@
         <script type="text/javascript">
             app.initialize();
         </script>
-        <script type="text/javascript" src="http://164.177.149.82/vault/customerlogin.php?email=simon@tvappagency.com&password=123&callback=CBlogin"></script>
+        <!--script type="text/javascript" src="http://164.177.149.82/vault/customerlogin.php?email=simon@tvappagency.com&password=123&callback=CBlogin"></script-->
     </head>
     <body>
         <div class="app">
@@ -42,7 +42,7 @@
                 <!--p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p-->
                 <div id="firstscreen">
-                    Customer or Merchant?
+                    Customer or Merchant?<br />
                     <button id="customerbutton" type="button" onclick="customer()">Customer</button>
                     <button id="merchantbutton" type="button" onclick="merchant()">Merchant</button>
                 </div>
@@ -53,7 +53,7 @@
                         PS:<input id="password" type="password" value="123"/><br />
                         <button id="loginbutton" type="button" onclick="login()">Login</button>
                     </div>
-                    <div id="mainscreen">
+                    <div id="mainscreenC">
                         <h2 id="welcomeuser">Welcome</h2>
                         <h3>CreditCards</h3>
                         <table id="tokenTable">
@@ -76,11 +76,16 @@
                     </div>
                 </div>
                 <div id="merchant">
-                    <div id="loginscreenC">
+                    <div id="loginscreenM">
                         <h2>Login Merchant</h2>
-                        EM:<input id="email" type="text" value="simon@tvappagency.com"/><br />
+                        EM:<input id="email" type="text" value="starbucks@example.com"/><br />
                         PS:<input id="password" type="password" value="123"/><br />
-                        <button id="loginbutton" type="button" onclick="loginC()">Login</button>
+                        <button id="loginbutton" type="button" onclick="login()">Login</button>
+                    </div>
+                    <div id="mainscreenM">
+                        <h2 id="welcomeuser">Welcome</h2>
+                        Generate order token:<br />
+                        <button id="generateToken" type="button" onclick="generateToken()">GenerateToken</button>
                     </div>
                 </div>
             </div>
