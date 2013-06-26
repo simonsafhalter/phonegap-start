@@ -1,5 +1,5 @@
 #firstscreen {
-    display: none;
+    display: block;
 }
 
 #merchant {
@@ -7,11 +7,11 @@
 }
 
 #customer {
-    display: block;
+    display: none;
 }
 
 #loginscreen {
-    display: block;
+    display: none;
 }
  
 #mainscreen {
