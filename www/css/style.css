@@ -1,3 +1,7 @@
+#firstscreen {
+    display: none;
+}
+
 #loginscreen {
     display: block;
 }
